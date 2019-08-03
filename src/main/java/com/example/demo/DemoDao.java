@@ -22,7 +22,7 @@ public class DemoDao {
 
   public List<User> findAllUsers(){
     List<User> users = new ArrayList<>();
-    String sql = "SELECT * FROM USER";
+    String sql = "SELECT * FROM USERS";
     try (Connection conn = dataSource.getConnection()) {
       PreparedStatement ps = conn.prepareStatement(sql);
       User customer = null;
