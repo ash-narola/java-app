@@ -23,9 +23,7 @@ public class DemoDao {
   public List<User> findAllUsers(){
     List<User> users = new ArrayList<>();
     String sql = "SELECT * FROM USER";
-    Connection conn = null;
-    try {
-      conn = dataSource.getConnection();
+    try (Connection conn = dataSource.getConnection()) {
       PreparedStatement ps = conn.prepareStatement(sql);
       User customer = null;
       ResultSet rs = ps.executeQuery();
@@ -39,12 +37,6 @@ public class DemoDao {
       users.add(customer);
     } catch (SQLException e) {
       throw new RuntimeException(e);
-    } finally {
-      if (conn != null) {
-        try {
-          conn.close();
-        } catch (SQLException e) {}
-      }
     }
 
     return users;
